@@ -54,9 +54,6 @@ public class DiffQuick {
 			help();
 		}
 		
-		for(String e : exts)
-			System.out.println(e + " BL:" + bl + " " + exts.length);
-		
 		run(recurse, fileA, fileB, exts, bl);
 	}
 	
@@ -72,7 +69,6 @@ public class DiffQuick {
 		
 		List<File> filesA = DiffQuickUtils.getDirFiles(fileA, exts, bl, recurse);
 		List<File> filesB = DiffQuickUtils.getDirFiles(fileB, exts, bl, recurse);
-		System.out.println(filesA.toString().replace(",", "\n"));
 		
 		for(File a : filesA)
 		{
@@ -129,6 +125,7 @@ public class DiffQuick {
 	private static final int EOF = -1;
 	/**
 	 * copied from apache commons it reads byte by byte to guarantee no out of sync errors while slow it works
+	 * NOTE: removed BufferedInputStream checks
 	 */
     public static boolean contentEquals(InputStream in1, InputStream in2) throws IOException 
     {
