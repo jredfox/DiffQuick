@@ -85,6 +85,7 @@ public class DiffQuick {
 		}
 	}
 
+	private static final int BUFFER_SIZE = 524288;
 	public static void diffquick(File fileA, File fileB) 
 	{
 		if(fileA.equals(fileB))
@@ -107,8 +108,8 @@ public class DiffQuick {
 		{
 			try
 			{
-				in1 = new BufferedInputStream(new FileInputStream(fileA));
-				in2 = new BufferedInputStream(new FileInputStream(fileB));
+				in1 = new BufferedInputStream(new FileInputStream(fileA), BUFFER_SIZE);
+				in2 = new BufferedInputStream(new FileInputStream(fileB), BUFFER_SIZE);
 				if(!contentEquals(in1, in2))
 					System.out.println("diff:\"" + fileA + "\" \"" + fileB + "\"");
 	   	 		DiffQuickUtils.close(in1, in2);
